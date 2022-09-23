@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_medical_claim_employee,medical_claim_employee,model_medical_claim,x_medical_insurance.employee_mi,1,1,1,1
+access_medical_claim_hc,medical_claim_hc,model_medical_claim,x_medical_insurance.hc_mi,1,1,1,1
+access_medical_claim_line,medical_claim_line,model_medical_claim_line,base.group_user,1,1,1,1
+access_medical_claim_history,medical_claim_history,model_medical_claim_history,base.group_user,1,1,1,1
+access_claim_type,claim_type,model_claim_type,base.group_user,1,1,1,1
+access_approve_medical_history_wizard,approve_medical_history_wizard,model_approve_medical_history_wizard,base.group_user,1,1,1,1
+access_excess_claim_employee,excess_claim_employee,model_excess_claim,x_medical_insurance.employee_mi,1,1,0,0
+access_excess_claim_hc,excess_claim_hc,model_excess_claim,x_medical_insurance.hc_mi,1,1,1,1
+access_excess_claim_line,excess_claim_line,model_excess_claim_line,base.group_user,1,1,1,1
+access_payment_type,payment_type,model_payment_type,base.group_user,1,1,1,1

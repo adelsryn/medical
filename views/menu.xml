@@ -1,0 +1,75 @@
+<odoo>
+	<data>
+
+
+
+		<menuitem id="medical_insurance_root_menu"
+            name="Medical Insurance"
+            web_icon="x_medical_insurance,static/description/medical1.png"
+            sequence="5"/>
+
+
+            <!-- Medical -->
+	        <menuitem id="medical_claim_root_menu"
+	            parent = "medical_insurance_root_menu"
+	            name="Medical Claim"
+	            sequence="1"/>
+
+	        <menuitem id="claim_root_menu"
+	            parent = "medical_claim_root_menu"
+	            name="Claim"
+	            action="x_medical_insurance.action_medical_claim_employee"
+	            sequence="1"
+				groups="x_medical_insurance.employee_mi"/>
+
+			<menuitem id="claim_hc_root_menu"
+	            parent = "medical_claim_root_menu"
+	            name="Claim"
+	            action="x_medical_insurance.action_medical_claim_hc"
+	            sequence="1"
+				groups="x_medical_insurance.hc_mi"/>
+
+	        <menuitem id="excess_claim_employee_root_menu"
+	            parent = "x_medical_insurance.medical_claim_root_menu"
+	            name="Excess Claim"
+	            action="x_medical_insurance.action_excess_claim_employee"
+	            sequence="2"
+				groups="x_medical_insurance.employee_mi"/>
+
+			<menuitem id="excess_claim_hc_root_menu"
+	            parent = "x_medical_insurance.medical_claim_root_menu"
+	            name="Excess Claim"
+	            action="x_medical_insurance.action_excess_claim_hc"
+	            sequence="2"
+				groups="x_medical_insurance.hc_mi"/>
+
+
+	        <!-- Config -->
+	        <menuitem id="config_root_menu"
+	            parent = "medical_insurance_root_menu"
+	            name="Configurations"
+				groups="x_medical_insurance.hc_mi"
+	            sequence="2"/>
+
+	        <menuitem id="claim_type_root_menu"
+	            parent = "config_root_menu"
+	            name="Claim Type"
+	            action="x_medical_insurance.action_medical_claim_type"
+	            sequence="1"/>
+
+			<!-- <menuitem id="limit_root_menu"
+	            parent = "config_root_menu"
+	            name="Limit Claim"
+	            action="x_medical_insurance.action_medical_limit"
+	            sequence="2"/> -->
+
+<!-- 	         <menuitem id="excess_claim_root_menu"
+	            parent = "x_medical_insurance.medical_claim_root_menu"
+	            name="Excess Claim"
+	            action="x_medical_insurance.action_excess_claim"
+	            sequence="2"/>
+ -->
+
+
+    </data>
+</odoo>

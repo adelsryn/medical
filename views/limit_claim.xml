@@ -1,0 +1,53 @@
+<odoo>
+	<data>
+
+	   <record id="action_medical_limit" model="ir.actions.act_window">
+            <field name="name">Limit Klaim</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">limit.klaim</field>
+             <field name="domain">[]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new record in your  Claim
+              </p><p>
+                Odoo helps you easily track all activities related to a  Claim
+              </p>
+            </field>
+      </record>
+
+
+        <record id="view_limit_klaim_form" model="ir.ui.view">
+        <field name="name">limit.klaim.form</field>
+        <field name="model">limit.klaim</field>
+        <field name="arch" type="xml">
+            <form string=" Limit Claim">
+                <sheet>
+                    <group>
+                            <field name="employee_id"  required='1'/>
+                            <field name="employee_grade" required='1'/>
+                            <field name="claim_type_id" required='1'/>
+                            <field name="batas_limit" required='1'/>
+                            <field name="sisa_limit" required='1'/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+      </record>
+
+      <record id="view_limit_klaim_tree" model="ir.ui.view">
+        <field name="name">limit.klaim.tree</field>
+        <field name="model">limit.klaim</field>
+        <field name="arch" type="xml">
+            <tree string=" Claim">
+                            <field name="employee_id"  required='1'/>
+                            <field name="employee_grade" required='1'/>
+                            <field name="claim_type_id" required='1'/>
+                            <field name="batas_limit" required='1'/>
+                            <field name="sisa_limit" required='1'/>
+            </tree>
+        </field>
+      </record>
+
+	</data>
+</odoo>

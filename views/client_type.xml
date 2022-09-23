@@ -1,0 +1,71 @@
+<odoo>
+	<data>
+
+	   <record id="action_medical_claim_type" model="ir.actions.act_window">
+            <field name="name">Claim Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">claim.type</field>
+             <field name="domain">[]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new record in your  Claim
+              </p><p>
+                Odoo helps you easily track all activities related to a  Claim
+              </p>
+            </field>
+        </record>
+
+
+        <record id="view_claim_type_form" model="ir.ui.view">
+        <field name="name">claim.type.form</field>
+        <field name="model">claim.type</field>
+        <field name="arch" type="xml">
+            <form string=" Claim">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="code"  required='1'/>
+                            <field name="claim_code" required='1'/>
+                            <field name="name" required='1'/>
+                            <field name="employee_grade_ids" required='1' widget="many2many_tags"/>
+                            <field name="limit_amount" required='1'/>
+                        </group>
+                        <group>
+                            <field name="coverage"/>
+                            <!-- <field name="is_unlimited"/> -->
+                            <field name="benefit"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                 </div>
+            </form>
+        </field>
+      </record>
+
+        <record id="view_claim_type_tree" model="ir.ui.view">
+        <field name="name">claim.type.tree</field>
+        <field name="model">claim.type</field>
+        <field name="arch" type="xml">
+            <tree string=" Claim">
+                    <field name="code" />
+                    <field name="claim_code"/>
+                    <field name="name"/>
+                    <field name="employee_grade_ids"/>
+                    <field name="limit_amount"/>
+                    <field name="coverage"/>
+                    <!-- <field name="is_unlimited"/> -->
+                    <field name="benefit"/>
+            </tree>
+        </field>
+      </record>
+
+
+
+
+	</data>
+</odoo>

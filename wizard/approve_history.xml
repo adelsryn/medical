@@ -1,0 +1,92 @@
+<odoo>
+	<data>
+  
+	    <record id="view_approve_history_medical" model="ir.ui.view">
+	        <field name="name">view_approve_history_medical.form</field>
+	        <field name="model">approve.medical.history.wizard</field>
+	        <field name="arch" type="xml">
+	            <form string="Approve With Comment">
+	                <sheet>
+	                    <group>
+	                        <field name="type_aprove" invisible="1"/>
+							<field name="employee_id" invisible="1"/>
+	                        <field name="description" string="Comment"/>
+	                    </group>
+	                </sheet>
+	                <footer>
+	                    <button string="Submit Comment" name="action_generate" type="object" class="btn-primary"/>
+						<!-- <button string="Submit Comment 2" name="action_generate_approve" type="object" class="btn-primary"/> -->
+	                    or
+	                    <button string="Cancel" special="cancel" class="btn-primary"/>
+	                </footer>
+	            </form>
+	        </field>
+	    </record>
+
+		<record id="view_approve_history_medical_approved" model="ir.ui.view">
+	        <field name="name">view_approve_history_medical_approved.form</field>
+	        <field name="model">approve.after.submit.medical.history.wizard</field>
+	        <field name="arch" type="xml">
+	            <form string="Approve the Submission">
+	                <sheet>
+	                    <group>
+	                        <field name="type_aprove" invisible="1"/>
+	                        <field name="description" string="Comment"/>
+	                    </group>
+	                </sheet>
+	                <footer>
+	                    <button string="Submit Comment" name="action_generate_approve" type="object" class="btn-primary"/>
+	                    or
+	                    <button string="Cancel" special="cancel" class="btn-primary"/>
+	                </footer>
+	            </form>
+	        </field>
+	    </record>
+
+		<record id="view_reject_history_medical_approved" model="ir.ui.view">
+	        <field name="name">view_reject_history_medical_approved.form</field>
+	        <field name="model">reject.medical.history.wizard</field>
+	        <field name="arch" type="xml">
+	            <form string="Reject the Submission">
+	                <sheet>
+	                    <group>
+	                        <field name="type_aprove" invisible="1"/>
+							<field name="employee_id" invisible="1"/>
+	                        <field name="description" string="Comment"/>
+	                    </group>
+	                </sheet>
+	                <footer>
+	                    <button string="Submit Comment" name="action_generate_reject" type="object" class="btn-primary"/>
+	                    or
+	                    <button string="Cancel" special="cancel" class="btn-primary"/>
+	                </footer>
+	            </form>
+	        </field>
+	    </record>
+
+
+		<record id="view_close_history_medical_approved" model="ir.ui.view">
+	        <field name="name">view_close_history_medical_approved.form</field>
+	        <field name="model">close.after.submit.medical.history.wizard</field>
+	        <field name="arch" type="xml">
+	            <form string="Close the Submission">
+	                <sheet>
+	                    <group>
+	                        <field name="type_aprove" invisible="1"/>
+							<!-- <field name="employee_id" invisible="1"/> -->
+	                        <field name="description" string="Comment"/>
+	                    </group>
+	                </sheet>
+	                <footer>
+	                    <button string="Submit Comment" name="action_generate_close" type="object" class="btn-primary"/>
+	                    or
+	                    <button string="Cancel" special="cancel" class="btn-primary"/>
+	                </footer>
+	            </form>
+	        </field>
+	    </record>
+
+
+
+	</data>
+</odoo>

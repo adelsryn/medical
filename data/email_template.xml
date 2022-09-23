@@ -1,0 +1,149 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data> 
+        <record id="email_kelengkapan_dokumen_claim" model="mail.template">
+            <field name="name">mail_kelengkapan_dokumen_claim</field>
+            <field name="model_id" ref="x_medical_insurance.model_medical_claim"/>
+            <field name="email_from">Human.Capital@xapiens.id</field>
+            <field name="email_to">${object.employee_id.work_email}</field>
+            <field name="subject">Konfirmasi Kelengkapan Dokumen</field>
+            <field name="body_html">
+                <![CDATA[
+                <p>Dengan Hormat.</p>
+                <br/>
+                <p> Sehubungan dengan pengajuan klaim reimbursement Bapak/Ibu, kami informasikan untuk 
+                    segera mengirimkan dokumen fisik asli ke Human Capital : Melvina Dhini Amalia 
+                    maksimal 60 hari sejak tanggal kwitansi, sesuai ketentuan kadaluarsa klaim 
+                    reimbursement.
+                </p>
+                <p>
+                Untuk informasi lebih lanjut dapat menghubungi :
+                </p>
+                <p>
+                Human Capital : Melvina Dhini Amalia (Melvina.amalia@xapiens.id)
+                </p>
+                <p>
+                Terimakasih.
+                </p>
+                <p>
+                Regards,
+                </p>
+                ]]>
+            </field>
+            <!-- <field name="lang">${object.partner_id.lang}</field> -->
+        </record>
+
+        <record id="email_notif_reject" model="mail.template">
+            <field name="name">mail_notif_reject</field>
+            <field name="model_id" ref="x_medical_insurance.model_reject_medical_history_wizard"/>
+            <field name="email_from">Human.Capital@xapiens.id</field>
+            <field name="email_to">${object.employee_id.work_email}</field>
+            <field name="subject">Permohonan Claim di Tolak</field>
+            <field name="body_html">
+                <![CDATA[
+                <p>Dengan Hormat.</p>
+                <p> Sehubungan dengan pengajuan klaim reimbursement Bapak/Ibu, kami informasikan 
+                    bahwa pengajuan klaim Bapak/Ibu masih kami tunda dan mohon kesediaannya 
+                    melengkapi kekurangan dokumen klaim sebagai berikut :
+                </p>
+
+                <p><strong>Alasan Penundaan: </strong></p>
+                <p>${object.description}</p>
+
+                <p>Kelengkapan dokumen dapat dikirimkan kembali ke Human capital maksimal 60 hari 
+                    sejak tanggal kwitansi, sesuai ketentuan kadaluarsa klaim reimbursement.
+                </p>
+
+                <p>Untuk informasi lebih lanjut dapat menghubungi :
+                </p>
+
+                <p>
+                Human Capital : Melvina Dhini Amalia (Melvina.amalia@xapiens.id)
+                </p>
+                <p>
+                Terimakasih.
+                </p>
+                <p>
+                Regards,
+                </br>
+                Human Capital
+                </p>
+                ]]>
+            </field>
+        </record>
+
+
+
+        <record id="email_notif_claim_excess" model="mail.template">
+            <field name="name">mail_notif_claim_excess</field>
+            <field name="model_id" ref="x_medical_insurance.model_excess_claim"/>
+            <field name="email_from">Human.Capital@xapiens.id</field>
+            <field name="email_to">${object.employee_id.work_email}</field>
+            <field name="subject">Konfirmasi kelengkapan Dokumen</field>
+            <field name="body_html">
+                <![CDATA[
+                <p>Dengan Hormat.</p>
+                <p> Sehubungan dengan adanya excess claim yang terjadi atas perawatan Bapak/Ibu, 
+                    maka mohon bantuannya untuk dapat melakukan pembayaran excess claim dengan 
+                    detail sebagai berikut:
+                </p>
+
+                <p>Click to view detail:
+                    <b><a href="${object.get_full_url()}">Click Here</a></b>
+                </p>
+
+                <div style="background-color:yellow;">
+                    <p>Batas waktu pengembalian excess claim ini adalah 14 hari kalendar.</p>
+                </div>
+                <p>
+                Human Capital : Melvina Dhini Amalia (Melvina.amalia@xapiens.id)
+                </p>
+                <p>
+                Terimakasih.
+                </p>
+                <p>
+                Regards,
+                </br>
+                Human Capital
+                </p>
+                ]]>
+            </field>
+        </record>
+
+        <record id="email_submit_to_employee_claim_excess" model="mail.template">
+            <field name="name">email_submit_to_employee_claim_excess</field>
+            <field name="model_id" ref="x_medical_insurance.model_excess_claim"/>
+            <field name="email_from">Human.Capital@xapiens.id</field>
+            <field name="email_to">${object.employee_id.work_email}</field>
+            <field name="subject">Konfirmasi kelengkapan Dokumen</field>
+            <field name="body_html">
+                <![CDATA[
+                <p>Dengan Hormat.</p>
+                <p> Sehubungan dengan adanya excess claim yang terjadi atas perawatan Bapak/Ibu, 
+                    maka mohon bantuannya untuk dapat melakukan pembayaran excess claim dengan 
+                    detail sebagai berikut:
+                </p>
+
+                <p>Click to view detail:
+                    <b><a href="${object.get_full_url()}">Click Here</a></b>
+                </p>
+
+                <div style="background-color:yellow;">
+                    <p>Batas waktu pengembalian excess claim ini adalah 14 hari kalendar.</p>
+                </div>
+                <p>
+                Human Capital : Melvina Dhini Amalia (Melvina.amalia@xapiens.id)
+                </p>
+                <p>
+                Terimakasih.
+                </p>
+                <p>
+                Regards,
+                </br>
+                Human Capital
+                </p>
+                ]]>
+            </field>
+        </record>
+    </data>
+</odoo>

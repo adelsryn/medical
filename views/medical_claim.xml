@@ -1,0 +1,138 @@
+<odoo>
+	<data>
+
+	   <record id="action_medical_claim_hc" model="ir.actions.act_window">
+            <field name="name">Claim</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">medical.claim</field>
+             <field name="domain">[]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new record in your Medical Claim
+              </p><p>
+                Odoo helps you easily track all activities related to a Medical Claim
+              </p>
+            </field>
+        </record>
+
+      <record id="action_medical_claim_employee" model="ir.actions.act_window">
+            <field name="name">Claim</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">medical.claim</field>
+             <field name="domain">[]</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('employee_id.user_id', '=', uid)]</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new record in your Medical Claim
+              </p><p>
+                Odoo helps you easily track all activities related to a Medical Claim
+              </p>
+            </field>
+        </record>
+ 
+
+        <record id="view_medical_claim_form" model="ir.ui.view">
+        <field name="name">medical.claim.form</field>
+        <field name="model">medical.claim</field>
+        <field name="arch" type="xml">
+            <form string="Medical Claim">
+            	<header>
+                <field name="inv" invisible="1"/>
+            		<button string="Submit" name="action_ref_submited" type="object" class="btn-primary" states="draft"/>
+            		<button string="Approve" name="action_ref_approve" type="object" class="btn-primary" attrs="{'invisible': ['|', ('state','!=','hc'), ('inv', '=', False)]}" groups="x_medical_insurance.hc_mi"/>
+            		<button string="Reject" name="action_ref_reject" type="object" class="btn-primary" attrs="{'invisible': ['|', ('state','!=','hc'), ('inv', '=', False)]}" groups="x_medical_insurance.hc_mi"/>
+            		<button string="Reminders" name="action_ref_reminder" type="object" class="btn-primary" attrs="{'invisible' : [('state','in', ('draft', 'close'))]}" groups="x_medical_insurance.hc_mi"/>
+                <button string="Close" name="action_ref_close" type="object" class="btn-primary" groups="x_medical_insurance.hc_mi" states="setlement"/>
+            		<field name="state" widget="statusbar" />
+            	</header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id"  required='1' attrs="{'readonly' : [('state','=','setlement')]}"/>
+                            <field name="employee_id_number" required='1' readonly="1"/>
+                            <field name="employee_grade" required='1' readonly="1"/>
+                            <field name="responsible_id" required='1' attrs="{'readonly' : [('state','=','setlement')]}" options="{'no_create_edit': True, 'no_open': True}"/>
+                        </group>
+                        <group>
+                            <field name="job_id" required='1' readonly="1"/>
+                            <field name="department_id" required='1' readonly="1"/>
+                            <field name="claim_date" attrs="{'readonly' : [('state','=','setlement')]}"/>
+                            <field name="total_claim" required='1' readonly="1"/>
+                            <field name="x_css" invisible="1"/>
+
+                            <!-- <field name="claim_type_ids"/> -->
+
+                        </group>
+                    </group>
+                    <notebook>
+                    	<page string="Claim Information">
+                    		<field name="medical_claim_ids" context="{'default_medical_id':active_id}">
+                    			<tree editable="bottom" decoration-muted="state != 'draft'">
+                                    <field name="state" invisible='1'/>
+                    				<field name="claim_type" attrs="{'readonly': [('is_setlement', '=', True)]}" options="{'no_create_edit': True, 'no_open': True}"/>
+                    				<field name="patient_name" attrs="{'readonly': [('is_setlement', '=', True)]}"/>
+                    				<field name="description" attrs="{'readonly': [('is_setlement', '=', True)]}"/>
+                    				<field name="card_number_insurance" attrs="{'readonly': [('is_setlement', '=', True)]}"/>
+                    				<field name="invoice_date" attrs="{'readonly': [('is_setlement', '=', True)]}"/>
+                    				<field name="amount_claim" attrs="{'readonly': [('is_setlement', '=', True)]}"/>
+                    				<field name="limit_claim" readonly="1"/>
+                    				<field name="attachment"/>
+                            <field name="is_setlement" invisible="1"/>
+                            <field name="compute_claim_ids" widget="many2many_tags" invisible="1"/>
+                            
+                    			</tree>
+                    		</field>
+                    	</page>
+                    	<page string="Claim Approval History">
+                    		<field name="medical_history_ids">
+                    			<tree editable="bottom">
+                    				<field name="state" readonly="1" string="Status"/>
+                    				<field name="user_id" readonly="1"/>
+                    				<field name="comment" readonly="1"/>
+                    				<field name="create_date" readonly="1"/>
+                    			</tree>
+                    		</field>
+                    	</page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                 </div>
+            </form>
+        </field>
+      </record>
+
+      <record id="view_medical_claim_form_employee" model="ir.ui.view">
+        <field name="name">view.medical.claim.form.employee</field>
+        <field name="model">medical.claim</field>
+        <field name="inherit_id" ref="view_medical_claim_form"/>
+        <field name="priority">36</field>
+        <field name="groups_id" eval="[(6, 0, [ref('x_medical_insurance.employee_mi') ])]"/>
+        <field name="arch" type="xml">
+            <field name="employee_id" position="attributes">
+            <attribute name="readonly">1</attribute>
+            </field>
+        </field>
+</record>
+
+        <record id="view_medical_claim_tree" model="ir.ui.view">
+        <field name="name">medical.claim.tree</field>
+        <field name="model">medical.claim</field>
+        <field name="arch" type="xml">
+            <tree string="Medical Claim">
+                    <field name="employee_id" />
+                    <field name="employee_id_number"/>
+                    <field name="employee_grade"/>
+                    <field name="job_id"/>
+                    <field name="total_claim" sum="total"/>
+                    <field name="state"/>
+                    
+            </tree>
+        </field>
+      </record>
+	</data>
+</odoo>
